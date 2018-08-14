@@ -22,3 +22,7 @@ body{
     visibility: hidden;
     clear: both;
 }
+input,button{
+    border: none;
+    outline:none;
+}
