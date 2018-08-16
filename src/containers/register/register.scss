@@ -1,6 +1,6 @@
 @import "./../../static/scss/common.scss";
 
-.login {
+.register {
     width: 100%;
     height: 100%;
     background: url($loginBg) no-repeat left center;
@@ -9,7 +9,7 @@
     top: 0;
     left: 0;
     z-index: 9;
-    .login-mask{
+    .register-mask{
         width:100%;
         height:100%;
         background:rgba(0,0,0,.59);
@@ -18,7 +18,7 @@
         left: 0;
         z-index: 99;
     }
-    .login-form{
+    .register-form{
         width:100%;
         position: fixed;
         top: 50%;
@@ -26,7 +26,7 @@
         z-index: 999;
         text-align: center;
         font-size: 0rem;
-        transform: translate(0,-80%);
+        transform: translate(0,-60%);
         p{
             text-align: center;
             color: #fff;
@@ -47,8 +47,31 @@
             margin-top: 2rem;
             color: #fff;
         }
+        .type{
+           p{
+               font-size: 1.5rem;
+               text-align: center;
+               padding: 1rem 0;
+           }
+           span{
+               font-size: 1.5rem;
+               display: inline-block;
+               width: 10rem;
+               height: 3rem;
+               text-align: center;
+               border: none;
+               border-radius: 1.5rem;
+               margin: 0 2rem;
+               color: #fff;
+               background: #999;
+               line-height: 3rem;
+               &.active{
+                    background: #19cc46;
+               }
+           }
+        }
     }
-    .go-register{
+    .go-login{
         color: #fff;
         position: fixed;
         z-index: 999;

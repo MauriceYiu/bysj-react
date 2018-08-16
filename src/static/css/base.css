@@ -26,3 +26,6 @@ input,button{
     border: none;
     outline:none;
 }
+.am-toast{
+    font-size: 1.5rem !important;
+}

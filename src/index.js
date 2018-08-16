@@ -8,6 +8,10 @@ import "./static/js/rem";
 import RouteMap from "./router/RouteMap";
 import { HashRouter } from "react-router-dom";
 
+import FastClick from 'fastclick'
+
+FastClick.attach(document.body);
+
 ReactDOM.render(
     <HashRouter>
         <App>
