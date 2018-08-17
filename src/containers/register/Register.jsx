@@ -65,7 +65,7 @@ class Register extends Component {
             let res = await register(userInfo);
             if(res.code === 0){
                 Toast.success(res.msg, 3);
-                this.props.history.push("/login");
+                this.props.history.push("/setUserInfo");
             }else{
                 Toast.fail(res.msg, 3);
             }
