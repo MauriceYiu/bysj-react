@@ -46,16 +46,16 @@ class Register extends Component {
         const username = this.usernameInp.value;
         const password = this.passwordInp.value;
         const isLaoBan = this.state.isLaoBan;
-        if(!username){
+        if (!username) {
             Toast.fail("请输入用户名", 3);
             return;
         }
-        if(!password){
+        if (!password) {
             Toast.fail("请输入密码", 3);
             return;
         }
         let type;
-        isLaoBan?type="laoban":type="qiuzhi";
+        isLaoBan ? type = "laoban" : type = "qiuzhi";
         const userInfo = {
             username,
             password,
@@ -63,10 +63,10 @@ class Register extends Component {
         };
         try {
             let res = await register(userInfo);
-            if(res.code === 0){
+            if (res.code === 0) {
                 Toast.success(res.msg, 3);
-                this.props.history.push("/setUserInfo");
-            }else{
+                this.props.history.push(`/setUserInfo/${isLaoBan}`);
+            } else {
                 Toast.fail(res.msg, 3);
             }
         } catch (error) {

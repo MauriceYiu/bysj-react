@@ -28,40 +28,52 @@
                     border-radius: 2.5rem;
                     filter: grayscale(100%);
                 }
-                &.show-color{
-                    img{
+                &.show-color {
+                    img {
                         filter: none;
                     }
                 }
             }
         }
     }
-    .user-info{
-        p{
+    .user-info {
+        p {
             font-size: 1.4rem;
             padding-bottom: 1rem;
         }
-        input,textarea{
+        input,
+        textarea {
             width: 75%;
             height: 4rem;
             font-size: 1.5rem;
             padding-left: 1.2rem;
             text-align: center;
             border-radius: 2rem;
-            box-shadow: 0 0 9px rgba(0,0,0,.3);
+            box-shadow: 0 0 9px rgba(0, 0, 0, .3);
         }
-        .self-introduction{
-            textarea{
+        .self-introduction,
+        .job-introduction {
+            textarea {
                 padding-top: 1rem;
                 height: 9rem;
                 border-radius: 1rem;
                 text-align: left;
             }
         }
+        .boss {
+            p {
+                padding: 1.15rem 0;
+            }
+            .job-introduction {
+                textarea {
+                    height: 5.9rem;
+                }
+            }
+        }
     }
-    .save{
+    .save {
         padding-top: 5rem;
-        button{
+        button {
             width: 75%;
             height: 4rem;
             border-radius: 2rem;

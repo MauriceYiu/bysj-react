@@ -18,9 +18,28 @@ export const login = (userInfo) => {
         }
     });
 }
+// 注册
 export const register = (userInfo) => {
     return instance({
         url: "register",
+        method: "POST",
+        data: userInfo
+    }).then(res => {
+        if (res) {
+            try {
+                if (res.status === 200) {
+                    return Promise.resolve(res.data);
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        }
+    });
+}
+// 完善用户信息
+export const update = (userInfo) => {
+    return instance({
+        url: "update",
         method: "POST",
         data: userInfo
     }).then(res => {

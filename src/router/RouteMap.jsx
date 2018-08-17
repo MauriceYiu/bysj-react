@@ -12,7 +12,7 @@ class RouteMap extends Component {
                 <Route path="/" exact render={() => <Redirect to="/login" />} />
                 <Route path="/login" exact component={Login} />
                 <Route path="/register" exact component={Register} />
-                <Route path="/setUserInfo" exact component={SetUserInfo} />
+                <Route path="/setUserInfo/:isBoss" exact component={SetUserInfo} />
             </Switch>
         );
     }

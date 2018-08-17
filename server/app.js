@@ -5,7 +5,6 @@ const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
-const cookieParser = require('cookie-parser');
 
 const db = require("./db");
 
@@ -38,8 +37,6 @@ app.use(async (ctx, next) => {
 
 // routes
 app.use(index.routes(), index.allowedMethods())
-
-app.use(cookieParser());
 
 // error-handling
 app.on('error', (err, ctx) => {
