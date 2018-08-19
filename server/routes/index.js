@@ -84,8 +84,7 @@ router.post('/register', async (ctx) => {
           data: {
             _id: registerUserRes._id,
             username,
-            type,
-            ck: ctx.cookies.get('userid')
+            type
           }
         }
 

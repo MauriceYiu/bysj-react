@@ -29,13 +29,13 @@ class SetUserInfo extends Component {
                 <p>请选择您的头像</p>
                 <div className="user-avatar">
                     <ul>
-                        <li onClick={() => this.setState({ key: 0 })} className={key === 0 ? "show-color" : ""}>
+                        <li key={0} onClick={() => this.setState({ key: 0 })} className={key === 0 ? "show-color" : ""}>
                             <img src={gtq} alt="" />
                         </li>
-                        <li onClick={() => this.setState({ key: 1 })} className={key === 1 ? "show-color" : ""}>
+                        <li key={1} onClick={() => this.setState({ key: 1 })} className={key === 1 ? "show-color" : ""}>
                             <img src={xd} alt="" />
                         </li>
-                        <li onClick={() => this.setState({ key: 2 })} className={key === 2 ? "show-color" : ""}>
+                        <li key={2} onClick={() => this.setState({ key: 2 })} className={key === 2 ? "show-color" : ""}>
                             <img src={xer} alt="" />
                         </li>
                     </ul>
@@ -125,6 +125,8 @@ class SetUserInfo extends Component {
         let res = await update(userInfo);
         if (res.code === 0) {
             Toast.success(res.msg, 3);
+            localStorage.setItem("userInfo",JSON.stringify(res.data));
+            this.props.history.push('/index');
             return;
         } else {
             Toast.fail(res.msg, 3);
