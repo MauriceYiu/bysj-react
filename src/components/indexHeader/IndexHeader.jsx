@@ -25,7 +25,6 @@ class IndexHeader extends Component {
     componentDidMount() {
         let userInfo = JSON.parse(localStorage.getItem("userInfo"));
         let propsInfo = this.props;
-        console.log(propsInfo)
         this.setState({
             titName: propsInfo.titName ? (propsInfo.titName) : (userInfo.type === "qiuzhi" ? "企业招聘" : "求职列表")
         });

@@ -122,7 +122,9 @@ router.post('/update', async (ctx) => {
     }
   } else {
     try {
-      let res = await userModel.findByIdAndUpdate({_id: userid}, user);
+      let res = await userModel.findByIdAndUpdate({
+        _id: userid
+      }, user);
       if (!res) {
         info = {
           code: 1,
@@ -136,8 +138,16 @@ router.post('/update', async (ctx) => {
         );
       } else {
         // 准备一个返回的user数据对象
-        const {_id, username, type} = res;
-        const data = Object.assign({_id, username, type}, user);
+        const {
+          _id,
+          username,
+          type
+        } = res;
+        const data = Object.assign({
+          _id,
+          username,
+          type
+        }, user);
         info = {
           code: 0,
           data: data,
@@ -150,5 +160,32 @@ router.post('/update', async (ctx) => {
   }
   ctx.body = info;
 });
+router.get('/userlist', async (ctx) => {
+  const {
+    type
+  } = ctx.request.query;
+  let info;
+  try {
+    let res = await userModel.find({
+      type
+    });
+    if (res) {
+      info = {
+        code: 0,
+        data: res,
+        msg: "获取成功"
+      };
+    } else {
+      info = {
+        code: 1,
+        data: null,
+        msg: "暂无数据"
+      };
+    }
+  } catch (error) {
+    info = error;
+  }
+  ctx.body = info;
+})
 
 module.exports = router;
