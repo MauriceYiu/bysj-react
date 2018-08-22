@@ -1,0 +1,79 @@
+#chat {
+    font-size: 1.5rem;
+    height: 100%;
+    .msg {
+        width: 100%;
+        height: calc(100% - 11rem);
+        overflow: hidden;
+        overflow-y: scroll;
+        .from,
+        .to {
+            ul {
+                li {
+                    display: flex;
+                    margin: 1rem 0 0 1rem;
+                    .head {
+                        width: 4rem;
+                        height: 4rem;
+                        border-radius: 2rem;
+                        border: 1px solid #ddd;
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            border-radius: 2rem;
+                        }
+                    }
+                    .msg {
+                        max-width: 19rem;
+                        min-height: 4rem;
+                        margin-left: 1rem;
+                        background: #fff;
+                        border: 1px solid #ddd;
+                        box-shadow: 0 0 5px rgba(0, 0, 0, .1);
+                        border-radius: 9px;
+                        line-height: 4rem;
+                        padding: 0 1rem;
+                    }
+                }
+            }
+        }
+        .to {
+            ul {
+                li {
+                    margin: 1rem 1rem 0 0;
+                    justify-content: flex-end;
+                    .msg {
+                        margin-right: 1rem;
+                        background: rgb(25, 204, 70);
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+    .send-input {
+        width: 100%;
+        padding: 1rem 1rem 0 1rem;
+        display: flex;
+        justify-content: space-between;
+        position: fixed;
+        bottom: 1rem;
+        left: 0;
+        border-top: 1px solid #333;
+        z-index: 999;
+        input {
+            width: 75%;
+            height: 4rem;
+            border: 1px solid #ddd;
+            border-radius: 2rem;
+            padding-left: 1rem;
+        }
+        button {
+            width: 20%;
+            height: 4rem;
+            border-radius: 2rem;
+            background: rgb(25, 204, 70);
+            color: #fff;
+        }
+    }
+}

@@ -1,4 +1,4 @@
-#index-header{
+#index-header {
     width: 100%;
     height: 5rem;
     background: #f4f4f4;
@@ -7,12 +7,21 @@
     line-height: 5rem;
     color: #333;
     border-bottom: 1px solid #ddd;
-    .back{
+    position: fixed;
+    top: 0;
+    left: 0;
+    .back {
         width: 2rem;
         position: absolute;
-        left: 1.2rem;        
-        i{
+        left: 1.2rem;
+        i {
             font-size: 1.5rem !important;
         }
     }
+}
+
+.clear-header {
+    width: 100%;
+    height: 5rem;
+    background: #fff;
 }

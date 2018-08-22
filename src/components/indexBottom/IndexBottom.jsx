@@ -11,19 +11,22 @@ class IndexBottom extends Component {
     render() {
         let { key } = this.state;
         return (
-            <div id="index-bottom">
-                <ul>
-                    <li key={"0"} className={key === 0 ? "active" : ""} onClick={() => this.setState({ key: 0 })} >
-                        <i className="iconfont icon-shouye"></i>
-                    </li>
-                    <li key={"1"} className={key === 1 ? "active" : ""} onClick={() => this.setState({ key: 1 })} >
-                        <i className="iconfont icon-liuyan"></i>
-                    </li>
-                    <li key={"2"} className={key === 2 ? "active" : ""} onClick={() => this.setState({ key: 2 })} >
-                        <i className="iconfont icon-wode"></i>
-                    </li>
-                </ul>
-            </div>
+            <React.Fragment>
+                <div id="index-bottom">
+                    <ul>
+                        <li key={"0"} className={key === 0 ? "active" : ""} onClick={() => this.setState({ key: 0 })} >
+                            <i className="iconfont icon-shouye"></i>
+                        </li>
+                        <li key={"1"} className={key === 1 ? "active" : ""} onClick={() => this.setState({ key: 1 })} >
+                            <i className="iconfont icon-liuyan"></i>
+                        </li>
+                        <li key={"2"} className={key === 2 ? "active" : ""} onClick={() => this.setState({ key: 2 })} >
+                            <i className="iconfont icon-wode"></i>
+                        </li>
+                    </ul>
+                </div>
+                <div className="clear-bottom"></div>
+            </React.Fragment>
         );
     }
 }

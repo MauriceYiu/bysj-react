@@ -17,6 +17,7 @@ class Index extends Component {
     render() {
         const { listData } = this.state;
         let head;
+        let router = this.props.history;
         return (
             <div id="index">
                 <IndexHeader />
@@ -38,7 +39,7 @@ class Index extends Component {
                                         break;
                                 }
                                 return (
-                                    <li className="item" key={index}>
+                                    <li className="item" key={index} onClick={() => router.push(`/chat/${item._id}/${item.username}`)}>
                                         <div className="head">
                                             <img src={head} alt="" />
                                             <span className="username">{item.username}</span>
@@ -46,10 +47,10 @@ class Index extends Component {
                                         <div className="user-desc">
                                             <div className="post">职位：{item.post}</div>
                                             {
-                                                item.type==="laoban" ? (<div className="comp">公司：{item.company}</div>) : ("")
+                                                item.type === "laoban" ? (<div className="comp">公司：{item.company}</div>) : ("")
                                             }
                                             {
-                                                item.type==="laoban" ? (<div className="salary">薪资：{item.salary}</div>) : ("")
+                                                item.type === "laoban" ? (<div className="salary">薪资：{item.salary}</div>) : ("")
                                             }
                                             <div className="desc">描述：{item.info}</div>
                                         </div>

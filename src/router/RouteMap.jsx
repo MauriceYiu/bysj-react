@@ -5,6 +5,7 @@ import Login from "./../containers/login/Login";
 import Register from "./../containers/register/Register";
 import SetUserInfo from "./../containers/setUserInfo/SetUserInfo";
 import Index from "./../containers/index/Index";
+import Chat from "./../containers/chat/Chat";
 
 class RouteMap extends Component {
     render() {
@@ -39,6 +40,7 @@ class RouteMap extends Component {
                 <Route path="/setUserInfo" exact render={() => <Redirect to="/login" />} />
                 <PrivateRoute path="/setUserInfo/:isBoss" exact component={SetUserInfo} />
                 <PrivateRoute path="/index" exact component={Index} />
+                <PrivateRoute path="/chat/:id/:toName" exact component={Chat} />
             </Switch>
         );
     }

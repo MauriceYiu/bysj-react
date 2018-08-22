@@ -10,16 +10,19 @@ class IndexHeader extends Component {
     }
     render() {
         let { titName } = this.state;
-        let { isShowBack } = this.props;
+        let { isShowBack, history } = this.props;
         return (
+            <React.Fragment>
             <div id="index-header">
                 {
                     isShowBack ? (
-                        <span className="back"><i className="iconfont icon-fanhui"></i></span>
+                        <span className="back" onClick={() => history.go(-1)}><i className="iconfont icon-fanhui"></i></span>
                     ) : ("")
                 }
                 <span>{titName}</span>
             </div>
+            <div className="clear-header"></div>
+            </React.Fragment>
         );
     }
     componentDidMount() {

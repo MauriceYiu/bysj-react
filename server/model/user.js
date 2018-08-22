@@ -12,6 +12,6 @@ const userSchema = Schema({
     salary: {type: String} // 工资
 });
 
-let userModel = mongoose.model('user', userSchema);
+let userModel = mongoose.model('users', userSchema);
 
 module.exports = userModel;
