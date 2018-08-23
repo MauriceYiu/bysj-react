@@ -8,16 +8,22 @@ import "./static/js/rem";
 import RouteMap from "./router/RouteMap";
 import { HashRouter } from "react-router-dom";
 
+
+import { Provider } from 'react-redux';
+import store from './store/store';
+
 import FastClick from 'fastclick'
 
 FastClick.attach(document.body);
 
 ReactDOM.render(
-    <HashRouter>
-        <App>
-            <RouteMap/>
-        </App>
-    </HashRouter>, 
+    <Provider store={store}>
+        <HashRouter>
+            <App>
+                <RouteMap/>
+            </App>
+        </HashRouter>
+     </Provider>, 
     document.getElementById('root')
 );
 registerServiceWorker();

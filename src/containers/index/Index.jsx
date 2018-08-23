@@ -6,6 +6,8 @@ import gtq from "./../../static/images/gtq.png";
 import xd from "./../../static/images/xd.png";
 import xer from "./../../static/images/xer.png";
 import { userList } from "./../../api/user";
+import { connect } from 'react-redux';
+import { IO } from "./../../actions/chat";
 
 class Index extends Component {
     constructor(props) {
@@ -84,4 +86,7 @@ class Index extends Component {
     }
 }
 
-export default Index;
+export default connect(
+    state => ({ msgData: state.chat }),
+    { IO }
+)(Index);

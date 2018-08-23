@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import "./chat.scss";
 import IndexHeader from "./../../components/indexHeader/IndexHeader";
-import gtq from "./../../static/images/gtq.png";
-import xd from "./../../static/images/xd.png";
-import xer from "./../../static/images/xer.png";
-import io from 'socket.io-client';
+import { connect } from 'react-redux';
+import { IO, sendMsg } from "./../../actions/chat";
 
 class Chat extends Component {
     constructor(props) {
@@ -24,7 +22,7 @@ class Chat extends Component {
                         <ul>
                             <li>
                                 <div className="head">
-                                    <img src={gtq} alt="" />
+                                    <img src={require(`./../../static/images/gtq.png`)} alt="" />
                                 </div>
                                 <div className="msg">
                                     <p className="msg-info">
@@ -43,7 +41,7 @@ class Chat extends Component {
                                 </p>
                                 </div>
                                 <div className="head">
-                                    <img src={gtq} alt="" />
+                                    <img src={require(`./../../static/images/gtq.png`)} alt="" />
                                 </div>
                             </li>
                         </ul>
@@ -56,32 +54,27 @@ class Chat extends Component {
             </div>
         );
     }
-    send() {
-        if(!this.state.content.trim()){
+    async send() {
+        if (!this.state.content.trim()) {
             return;
         }
         let userInfo = JSON.parse(localStorage.getItem("userInfo"));
         let obj = {
             from: userInfo._id,
             to: this.props.match.params.id,
-            content:this.state.content
+            content: this.state.content
         }
-        io.socket.emit('sendMsg', obj);
+        await this.props.IO(userInfo._id);
+        await this.props.sendMsg(obj);
     }
-    initIO() {
-        if (!io.socket) {
-            // 连接服务器, 得到与服务器的连接对象
-            io.socket = io('ws://localhost:3009');// 2. 创建对象之后: 保存对象
-            // 绑定监听, 接收服务器发送的消息
-            io.socket.on('receiveMsg', function (chatMsg) {
-                // 只有当chatMsg是与当前用户相关的消息, 才去分发同步action保存消息
-                console.log(chatMsg);
-            })
-        }
-    }
-    componentDidMount() {
-        this.initIO();
+    componentWillUnmount() {
+        this.setState = (state, callback) => {
+            return;
+        };
     }
 }
 
-export default Chat;
+export default connect(
+    state => ({ msgData: state.chat }),
+    { IO, sendMsg }
+)(Chat);

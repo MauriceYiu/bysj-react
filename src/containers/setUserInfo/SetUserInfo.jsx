@@ -6,6 +6,9 @@ import xer from "./../../static/images/xer.png";
 import { update } from "./../../api/user.js";
 import { Toast } from 'antd-mobile';
 
+import { connect } from 'react-redux';
+import { IO } from "./../../actions/chat";
+
 
 class SetUserInfo extends Component {
     constructor(props) {
@@ -125,8 +128,9 @@ class SetUserInfo extends Component {
         let res = await update(userInfo);
         if (res.code === 0) {
             Toast.success(res.msg, 3);
-            localStorage.setItem("userInfo",JSON.stringify(res.data));
+            localStorage.setItem("userInfo", JSON.stringify(res.data));
             this.props.history.push('/index');
+            this.props.IO(res.data._id);
             return;
         } else {
             Toast.fail(res.msg, 3);
@@ -139,4 +143,7 @@ class SetUserInfo extends Component {
         };
     }
 }
-export default SetUserInfo;
+export default connect(
+    state => ({ msgData: null }),
+    { IO }
+)(SetUserInfo);

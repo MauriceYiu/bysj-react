@@ -3,12 +3,13 @@ import "./login.scss";
 import { login } from "./../../api/user";
 import { Toast } from 'antd-mobile';
 import LoginAndReg from "./../../components/loginAndReg/LoginAndReg";
+import { connect } from 'react-redux';
+import { IO } from "./../../actions/chat";
 
 class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
         };
         this.loginFn = this.loginFn.bind(this);
     }
@@ -60,6 +61,7 @@ class Login extends Component {
                 Toast.success(res.msg, 3);
                 localStorage.setItem("userInfo", JSON.stringify(res.data));
                 this.props.history.push("/index");
+                this.props.IO(res.data._id);
             }
         } catch (error) {
             console.log(error);
@@ -72,4 +74,7 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default connect(
+    state => ({msgData:null}),
+    { IO }
+)(Login);
