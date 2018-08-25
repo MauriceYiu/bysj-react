@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
 import "./setUserInfo.scss";
-import gtq from "./../../static/images/gtq.png";
-import xd from "./../../static/images/xd.png";
-import xer from "./../../static/images/xer.png";
 import { update } from "./../../api/user.js";
 import { Toast } from 'antd-mobile';
 
 import { connect } from 'react-redux';
-import { IO } from "./../../actions/chat";
 
 
 class SetUserInfo extends Component {
@@ -33,13 +29,13 @@ class SetUserInfo extends Component {
                 <div className="user-avatar">
                     <ul>
                         <li key={0} onClick={() => this.setState({ key: 0 })} className={key === 0 ? "show-color" : ""}>
-                            <img src={gtq} alt="" />
+                            <img src={require("./../../static/images/gtq.png")} alt="" />
                         </li>
                         <li key={1} onClick={() => this.setState({ key: 1 })} className={key === 1 ? "show-color" : ""}>
-                            <img src={xd} alt="" />
+                            <img src={require("./../../static/images/xd.png")} alt="" />
                         </li>
                         <li key={2} onClick={() => this.setState({ key: 2 })} className={key === 2 ? "show-color" : ""}>
-                            <img src={xer} alt="" />
+                            <img src={require("./../../static/images/xer.png")} alt="" />
                         </li>
                     </ul>
                 </div>
@@ -128,7 +124,7 @@ class SetUserInfo extends Component {
         let res = await update(userInfo);
         if (res.code === 0) {
             Toast.success(res.msg, 3);
-            localStorage.setItem("userInfo", JSON.stringify(res.data));
+            sessionStorage.setItem("userInfo", JSON.stringify(res.data));
             this.props.history.push('/index');
             this.props.IO(res.data._id);
             return;
@@ -145,5 +141,5 @@ class SetUserInfo extends Component {
 }
 export default connect(
     state => ({ msgData: null }),
-    { IO }
+    {}
 )(SetUserInfo);

@@ -59,8 +59,29 @@ export const userList = (type) => {
     return instance({
         url: "userlist",
         method: "GET",
-        params:{
+        params: {
             type
+        }
+    }).then(res => {
+        if (res) {
+            try {
+                if (res.status === 200) {
+                    return Promise.resolve(res.data);
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        }
+    });
+}
+
+// 获取消息列表
+export const msgList = (userid) => {
+    return instance({
+        url: "msglist",
+        method: "GET",
+        params:{
+            userid
         }
     }).then(res => {
         if (res) {

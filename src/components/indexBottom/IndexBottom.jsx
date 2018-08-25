@@ -4,23 +4,21 @@ import "./indexBottom.scss";
 class IndexBottom extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            key: 0
-        };
+        this.state={};
     }
     render() {
-        let { key } = this.state;
+        const { history, nowKey } = this.props;
         return (
             <React.Fragment>
                 <div id="index-bottom">
                     <ul>
-                        <li key={"0"} className={key === 0 ? "active" : ""} onClick={() => this.setState({ key: 0 })} >
+                        <li key={"0"} className={nowKey === 0 ? "active" : ""} onClick={() => { history.push("/index") }} >
                             <i className="iconfont icon-shouye"></i>
                         </li>
-                        <li key={"1"} className={key === 1 ? "active" : ""} onClick={() => this.setState({ key: 1 })} >
+                        <li key={"1"} className={nowKey === 1 ? "active" : ""} onClick={() => { history.push("/message") }} >
                             <i className="iconfont icon-liuyan"></i>
                         </li>
-                        <li key={"2"} className={key === 2 ? "active" : ""} onClick={() => this.setState({ key: 2 })} >
+                        <li key={"2"} className={nowKey === 2 ? "active" : ""} onClick={() => { history.push("/message") }} >
                             <i className="iconfont icon-wode"></i>
                         </li>
                     </ul>

@@ -1,5 +1,6 @@
 const router = require('koa-router')();
-const userModel = require("./../model/user.js");
+const userModel = require("./../model/user");
+const chatModel = require("./../model/chat");
 const md5 = require('blueimp-md5');
 
 const filter = {
@@ -186,6 +187,51 @@ router.get('/userlist', async (ctx) => {
     info = error;
   }
   ctx.body = info;
-})
+});
+
+//获取消息列表
+router.get('/msglist', async (ctx) => {
+  const {
+    userid
+  } = ctx.request.query;
+  let info; //回传数据信息
+  try {
+    let res = await userModel.find();
+    if (res) {
+      const userData = res.reduce((users, user) => {
+        users[user._id] = {
+          username: user.username,
+          header: user.header
+        };
+        return users;
+      }, {});
+      let chatInfo = await chatModel.find({
+        '$or': [{
+          from: userid
+        }, {
+          to: userid
+        }]
+      }, filter);
+      info = {
+        code: 0,
+        msg: "success",
+        data: {
+          chatInfo,
+          userData
+        }
+      }
+    } else {
+      info = {
+        code: 1,
+        msg: "暂无数据",
+        data: null
+      }
+    }
+  } catch (error) {
+    info = error;
+  }
+
+  ctx.body = info;
+});
 
 module.exports = router;

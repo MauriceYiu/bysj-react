@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import "./login.scss";
-import { login } from "./../../api/user";
 import { Toast } from 'antd-mobile';
 import LoginAndReg from "./../../components/loginAndReg/LoginAndReg";
 import { connect } from 'react-redux';
-import { IO } from "./../../actions/chat";
+import { login } from "../../actions";
 
 class Login extends Component {
     constructor(props) {
@@ -53,19 +52,37 @@ class Login extends Component {
             password
         };
         try {
-            let res = await login(userInfo);
-            console.log(res);
-            if (res.code === 1) {
-                Toast.fail(res.msg, 3);
-            } else {
-                Toast.success(res.msg, 3);
-                localStorage.setItem("userInfo", JSON.stringify(res.data));
+            await this.props.login(userInfo);
+
+            console.log(this.props.loginInfo);
+
+            const loginInfo = this.props.loginInfo;
+
+            if (loginInfo.code === 0) {
+                Toast.success(loginInfo.msg, 3);
+
+                sessionStorage.setItem("userInfo", JSON.stringify(loginInfo.data));
+
                 this.props.history.push("/index");
-                this.props.IO(res.data._id);
+            } else {
+                Toast.fail(loginInfo.msg, 3);
             }
+            // let res = await login(userInfo);
+            // console.log(res);
+            // if (res.code === 1) {
+            //     Toast.fail(res.msg, 3);
+            // } else {
+            //     Toast.success(res.msg, 3);
+            //     sessionStorage.setItem("userInfo", JSON.stringify(res.data));
+            //     this.props.history.push("/index");
+            //     this.props.IO(res.data._id);
+            // }
         } catch (error) {
             console.log(error);
         }
+    }
+    componentDidMount(){
+        sessionStorage.clear();
     }
     componentWillUnmount() {
         this.setState = (state, callback) => {
@@ -75,6 +92,6 @@ class Login extends Component {
 }
 
 export default connect(
-    state => ({msgData:null}),
-    { IO }
+    state => ({ loginInfo: state.user }),
+    { login }
 )(Login);

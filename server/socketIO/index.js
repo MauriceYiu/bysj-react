@@ -13,9 +13,7 @@ module.exports = function (server) {
             const chat_id = [from, to].sort().join('_');// from_to或者to_from
             const create_time = Date.now();
             new chatModel({ from, to, content, chat_id, create_time }).save(function (error, chatMsg) {
-                // 向特定用户发消息
-                console.log(socket.id)
-                io.sockets.sockets[socket.id].emit('receiveMsg', chatMsg);
+                io.emit('receiveMsg', chatMsg)
             });
         });
     });

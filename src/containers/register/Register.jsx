@@ -66,7 +66,7 @@ class Register extends Component {
             let res = await register(userInfo);
             if (res.code === 0) {
                 Toast.success(res.msg, 3);
-                localStorage.setItem("userInfo", JSON.stringify(res.data));
+                sessionStorage.setItem("userInfo", JSON.stringify(res.data));
                 this.props.history.push(`/setUserInfo/${isLaoBan}`);
             } else {
                 Toast.fail(res.msg, 3);

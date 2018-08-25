@@ -8,8 +8,8 @@
         overflow-y: scroll;
         .from,
         .to {
-            ul {
-                li {
+            div.item-wrap {
+                div.item-cont {
                     display: flex;
                     margin: 1rem 0 0 1rem;
                     .head {
@@ -38,10 +38,10 @@
             }
         }
         .to {
-            ul {
-                li {
+            div.item-wrap {
+                div.item-cont {
                     margin: 1rem 1rem 0 0;
-                    justify-content: flex-end;
+                    flex-direction: row-reverse;
                     .msg {
                         margin-right: 1rem;
                         background: rgb(25, 204, 70);
@@ -53,11 +53,12 @@
     }
     .send-input {
         width: 100%;
-        padding: 1rem 1rem 0 1rem;
+        padding: 1rem;
+        background: #fff;
         display: flex;
         justify-content: space-between;
         position: fixed;
-        bottom: 1rem;
+        bottom: 0;
         left: 0;
         border-top: 1px solid #333;
         z-index: 999;

@@ -2,12 +2,7 @@ import React, { Component } from 'react';
 import "./index.scss";
 import IndexHeader from "./../../components/indexHeader/IndexHeader";
 import IndexBottom from "./../../components/indexBottom/IndexBottom";
-import gtq from "./../../static/images/gtq.png";
-import xd from "./../../static/images/xd.png";
-import xer from "./../../static/images/xer.png";
 import { userList } from "./../../api/user";
-import { connect } from 'react-redux';
-import { IO } from "./../../actions/chat";
 
 class Index extends Component {
     constructor(props) {
@@ -18,8 +13,8 @@ class Index extends Component {
     }
     render() {
         const { listData } = this.state;
-        let head;
         let router = this.props.history;
+        let head;
         return (
             <div id="index">
                 <IndexHeader />
@@ -27,23 +22,11 @@ class Index extends Component {
                     <ul>
                         {
                             listData.map((item, index) => {
-                                switch (item.header) {
-                                    case "gtq":
-                                        head = gtq;
-                                        break;
-                                    case "xd":
-                                        head = xd;
-                                        break;
-                                    case "xer":
-                                        head = xer;
-                                        break;
-                                    default:
-                                        break;
-                                }
+                                item.header ? head = item.header : head = "gtq";
                                 return (
                                     <li className="item" key={index} onClick={() => router.push(`/chat/${item._id}/${item.username}`)}>
                                         <div className="head">
-                                            <img src={head} alt="" />
+                                            <img src={require(`./../../static/images/${head}.png`)} alt="" />
                                             <span className="username">{item.username}</span>
                                         </div>
                                         <div className="user-desc">
@@ -62,12 +45,12 @@ class Index extends Component {
                         }
                     </ul>
                 </div>
-                <IndexBottom />
+                <IndexBottom nowKey={0} history={router} />
             </div>
         );
     }
     async componentDidMount() {
-        let userInfo = JSON.parse(localStorage.getItem("userInfo"));
+        let userInfo = JSON.parse(sessionStorage.getItem("userInfo"));
         let type;
         userInfo.type === "laoban" ? type = "qiuzhi" : type = "laoban";
         try {
@@ -86,7 +69,4 @@ class Index extends Component {
     }
 }
 
-export default connect(
-    state => ({ msgData: state.chat }),
-    { IO }
-)(Index);
+export default Index;

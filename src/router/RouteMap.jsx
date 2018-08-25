@@ -6,11 +6,12 @@ import Register from "./../containers/register/Register";
 import SetUserInfo from "./../containers/setUserInfo/SetUserInfo";
 import Index from "./../containers/index/Index";
 import Chat from "./../containers/chat/Chat";
+import Message from "./../containers/message/Message";
 
 class RouteMap extends Component {
     render() {
         const fakeAuth = () => {
-            const userInfo = localStorage.getItem('userInfo');
+            const userInfo = sessionStorage.getItem('userInfo');
             if (!userInfo) {
                 return false;
             }
@@ -41,6 +42,7 @@ class RouteMap extends Component {
                 <PrivateRoute path="/setUserInfo/:isBoss" exact component={SetUserInfo} />
                 <PrivateRoute path="/index" exact component={Index} />
                 <PrivateRoute path="/chat/:id/:toName" exact component={Chat} />
+                <PrivateRoute path="/message" exact component={Message} />
             </Switch>
         );
     }
