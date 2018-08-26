@@ -80,8 +80,30 @@ export const msgList = (userid) => {
     return instance({
         url: "msglist",
         method: "GET",
-        params:{
+        params: {
             userid
+        }
+    }).then(res => {
+        if (res) {
+            try {
+                if (res.status === 200) {
+                    return Promise.resolve(res.data);
+                }
+            } catch (error) {
+                return Promise.reject(error);
+            }
+        }
+    });
+}
+
+// 阅读消息
+export const readMsg = (from, to) => {
+    return instance({
+        url: "readmsg",
+        method: "POST",
+        data: {
+            from,
+            to
         }
     }).then(res => {
         if (res) {

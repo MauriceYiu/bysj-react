@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import "./chat.scss";
 import IndexHeader from "./../../components/indexHeader/IndexHeader";
 import { connect } from 'react-redux';
-import { sendMsg } from "./../../actions";
+import { sendMsg, readMsg } from "./../../actions";
 
 class Chat extends Component {
     constructor(props) {
@@ -68,7 +68,9 @@ class Chat extends Component {
         }
 
         await this.props.sendMsg(obj);
-
+        this.setState({
+            content: ""
+        });
         this.msg.value = "";
     }
     async componentDidMount() {
@@ -80,9 +82,15 @@ class Chat extends Component {
     componentDidUpdate() {
         // 初始显示列表
         this.msgWrap.scrollTo(0, this.msgWrap.scrollHeight);
-        console.log(this.props.msgData)
+        console.log(this.props.msgData);
     }
-    componentWillUnmount() {
+    async componentWillUnmount() {
+
+        const from = this.props.match.params.id;
+        const to = this.state.userInfo._id;
+
+        await this.props.readMsg(from, to);
+
         this.setState = (state, callback) => {
             return;
         };
@@ -91,5 +99,5 @@ class Chat extends Component {
 
 export default connect(
     state => ({ msgData: state.chat }),
-    { sendMsg }
+    { sendMsg, readMsg }
 )(Chat);

@@ -28,6 +28,30 @@ export default function chat(state = initialState, action) {
                 chatInfo,
                 unReadCount: chatInfo.reduce((preTotal, msg) => preTotal + (!msg.read && msg.to === userid ? 1 : 0), 0)
             }
+        case actionTypes.MSG_READ:
+            const {
+                from,
+                to,
+                count
+            } = action.data;
+            state.chatInfo.forEach(msg => {
+                if (msg.from === from && msg.to === to && !msg.read) { //需要更新
+                    msg.read = true;
+                }
+            });
+            return {
+                userData: state.userData,
+                chatInfo: state.chatInfo.map(msg => {
+                    if (msg.from === from && msg.to === to && !msg.read) { //需要更新
+                        return { ...msg,
+                            read: true
+                        };
+                    } else { //不需要
+                        return msg;
+                    }
+                }),
+                unReadCount: state.unReadCount - count
+            }
         default:
             return state;
     }

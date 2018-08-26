@@ -234,4 +234,14 @@ router.get('/msglist', async (ctx) => {
   ctx.body = info;
 });
 
+// 读取消息
+router.post('/readmsg',async (ctx)=>{
+  const {from,to} = ctx.request.body;
+  
+  await chatModel.update({from, to, read: false}, {read: true}, {multi: true}, function(err, doc){
+    ctx.body = {code: 0,msg:"success",data: doc.nModified} // 更新的数量
+  });
+
+})
+
 module.exports = router;

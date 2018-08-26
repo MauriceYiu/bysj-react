@@ -3,6 +3,7 @@ import "./index.scss";
 import IndexHeader from "./../../components/indexHeader/IndexHeader";
 import IndexBottom from "./../../components/indexBottom/IndexBottom";
 import { userList } from "./../../api/user";
+import { connect } from 'react-redux';
 
 class Index extends Component {
     constructor(props) {
@@ -69,4 +70,7 @@ class Index extends Component {
     }
 }
 
-export default Index;
+export default connect(
+    state => ({ msgData: state.chat }),
+    undefined
+)(Index);

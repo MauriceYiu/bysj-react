@@ -48,6 +48,19 @@ export const receiveMsgList = ({
     }
 };
 
+export const msgRead = ({
+    count,
+    from,
+    to
+}) => ({
+    type: actionTypes.MSG_READ,
+    data: {
+        count,
+        from,
+        to
+    }
+});
+
 // 异步action返回一个函数，然后在里面进行相关操作后，可以dispatch另一个action改变相应的值
 const initIO = (dispatch, userid) => {
     // 1. 创建对象之前: 判断对象是否已经存在, 只有不存在才去创建
@@ -123,5 +136,20 @@ export const login = (userInfo) => {
 export const updateMsgList = (userInfo) => {
     return async (dispatch) => {
         await getMsgList(dispatch, userInfo._id);
+    }
+}
+
+export const readMsg = (from, to) => {
+    return async (dispatch) => {
+        const res = await userApi.readMsg(from, to);
+        if (res.code === 0) {
+            const count = res.data;
+            console.log(res);
+            dispatch(msgRead({
+                count,
+                from,
+                to
+            }))
+        }
     }
 }
