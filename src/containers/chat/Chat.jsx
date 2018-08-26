@@ -69,12 +69,6 @@ class Chat extends Component {
 
         await this.props.sendMsg(obj);
 
-        let msgInfo = this.state.msgInfo;
-        msgInfo.push(obj);
-        this.setState({
-            msgInfo,
-            content: ""
-        });
         this.msg.value = "";
     }
     async componentDidMount() {
