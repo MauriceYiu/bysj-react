@@ -4,10 +4,10 @@ import "./indexBottom.scss";
 class IndexBottom extends Component {
     constructor(props) {
         super(props);
-        this.state={};
+        this.state = {};
     }
     render() {
-        const { history, nowKey } = this.props;
+        const { history, nowKey, unReadCount } = this.props;
         return (
             <React.Fragment>
                 <div id="index-bottom">
@@ -15,10 +15,13 @@ class IndexBottom extends Component {
                         <li key={"0"} className={nowKey === 0 ? "active" : ""} onClick={() => { history.push("/index") }} >
                             <i className="iconfont icon-shouye"></i>
                         </li>
-                        <li key={"1"} className={nowKey === 1 ? "active" : ""} onClick={() => { history.push("/message") }} >
+                        <li key={"1"} className={nowKey === 1 ? "active msg" : "msg"} onClick={() => { history.push("/message") }} >
                             <i className="iconfont icon-liuyan"></i>
+                            {
+                                unReadCount ? (<span className="un-read-count">{unReadCount}</span>) : ("")
+                            }
                         </li>
-                        <li key={"2"} className={nowKey === 2 ? "active" : ""} onClick={() => { history.push("/message") }} >
+                        <li key={"2"} className={nowKey === 2 ? "active" : ""} onClick={() => { history.push("/me") }} >
                             <i className="iconfont icon-wode"></i>
                         </li>
                     </ul>

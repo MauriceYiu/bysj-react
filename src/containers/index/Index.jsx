@@ -46,7 +46,7 @@ class Index extends Component {
                         }
                     </ul>
                 </div>
-                <IndexBottom nowKey={0} history={router} />
+                <IndexBottom nowKey={0} history={router} unReadCount={this.props.unReadCount} />
             </div>
         );
     }
@@ -71,6 +71,5 @@ class Index extends Component {
 }
 
 export default connect(
-    state => ({ msgData: state.chat }),
-    undefined
+    state => ({ msgData: state.chat, unReadCount: state.chat.unReadCount })
 )(Index);

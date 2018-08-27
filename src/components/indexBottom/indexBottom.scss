@@ -21,6 +21,21 @@
                     color: rgb(30, 209, 75) !important;
                 }
             }
+            &.msg{
+                position: relative;
+                span{
+                  width: 1.5rem;
+                  height: 1.5rem;  
+                  background: red;
+                  color: #fff;
+                  font-size: 1rem;
+                  line-height: 1.5rem;
+                  text-align: center;
+                  border-radius: 0.75rem;
+                  position: absolute;
+                  right: -0.1rem;
+                }
+            }
         }
     }
 }

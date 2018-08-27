@@ -7,6 +7,7 @@ import SetUserInfo from "./../containers/setUserInfo/SetUserInfo";
 import Index from "./../containers/index/Index";
 import Chat from "./../containers/chat/Chat";
 import Message from "./../containers/message/Message";
+import Me from "./../containers/me/Me";
 
 class RouteMap extends Component {
     render() {
@@ -43,6 +44,7 @@ class RouteMap extends Component {
                 <PrivateRoute path="/index" exact component={Index} />
                 <PrivateRoute path="/chat/:id/:toName" exact component={Chat} />
                 <PrivateRoute path="/message" exact component={Message} />
+                <PrivateRoute path="/me" exact component={Me} />
             </Switch>
         );
     }
