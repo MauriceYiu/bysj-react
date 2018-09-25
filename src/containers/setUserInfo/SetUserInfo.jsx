@@ -140,6 +140,5 @@ class SetUserInfo extends Component {
     }
 }
 export default connect(
-    state => ({ msgData: null }),
-    {}
+    state => ({ msgData: null })
 )(SetUserInfo);
